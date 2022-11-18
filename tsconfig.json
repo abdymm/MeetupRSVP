@@ -16,14 +16,16 @@
       "@Hooks/*": ["./src/common/hooks/*"],
       "@Utils": ["./src/common/utils"],
       "@Utils/*": ["./src/common/utils/*"],
-      
+      "@Navigations": ["./src/common/navigations"],
+      "@Navigations/*": ["./src/common/navigations/*"],
+
       // Features
       "@Registration": ["./src/features/Registration"],
       "@Registration/*": ["./src/features/Registration/*"],
       "@User": ["./src/features/User"],
       "@User/*": ["./src/features/User/*"],
       "@Report": ["./src/features/Report"],
-      "@Reportegistration/*": ["./src/features/Report/*"],
+      "@Report/*": ["./src/features/Report/*"],
 
     }
   }

@@ -27,6 +27,7 @@ module.exports = {
           '@Services': './src/common/services',
           '@Hooks': './src/common/hooks',
           '@Utils': './src/common/utils',
+          '@Navigations': './src/common/navigations',
 
           // Features
           '@Registration': './src/features/Registration',
