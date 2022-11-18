@@ -1,26 +1,24 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import RegistrationScreen from '@Registration/screens';
 import UserScreen from '@User/screens';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {RouteNames} from './Routes';
+import ReportScreen from '@Report/screens';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const AppNavigationContainer = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name={'Registration'}
+      <Drawer.Navigator initialRouteName={RouteNames.Registration}>
+        <Drawer.Screen
+          name={RouteNames.Registration}
           component={RegistrationScreen}
-          options={{title: 'Registration'}}
         />
-        <Stack.Screen
-          name={'User'}
-          component={UserScreen}
-          options={{title: 'User'}}
-        />
-      </Stack.Navigator>
+        <Drawer.Screen name={RouteNames.User} component={UserScreen} />
+        <Drawer.Screen name={RouteNames.Report} component={ReportScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
