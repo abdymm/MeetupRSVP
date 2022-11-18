@@ -5,13 +5,18 @@ import UserScreen from '@User/screens';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {RouteNames} from './Routes';
 import ReportScreen from '@Report/screens';
+import {ScaledSheet} from 'react-native-size-matters';
 
 const Drawer = createDrawerNavigator();
 
 const AppNavigationContainer = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName={RouteNames.Registration}>
+      <Drawer.Navigator
+        initialRouteName={RouteNames.Registration}
+        screenOptions={{
+          drawerLabelStyle: styles.drawerItemLabel,
+        }}>
         <Drawer.Screen
           name={RouteNames.Registration}
           component={RegistrationScreen}
@@ -23,3 +28,9 @@ const AppNavigationContainer = () => {
   );
 };
 export default AppNavigationContainer;
+
+const styles = ScaledSheet.create({
+  drawerItemLabel: {
+    fontFamily: 'Poppins-Regular',
+  },
+});
