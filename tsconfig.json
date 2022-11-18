@@ -1,10 +1,30 @@
 // prettier-ignore
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",     /* Recommended React Native TSConfig base */
+  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      // Common
+      "@Constants": ["./src/common/constants"],
+      "@Constants/*": ["./src/common/constants/*"],
+      "@Components": ["./src/common/components"],
+      "@Components/*": ["./src/common/components/*"],
+      "@Services": ["./src/common/services"],
+      "@Services/*": ["./src/common/services/*"],
+      "@Hooks": ["./src/common/hooks"],
+      "@Hooks/*": ["./src/common/hooks/*"],
+      "@Utils": ["./src/common/utils"],
+      "@Utils/*": ["./src/common/utils/*"],
+      
+      // Features
+      "@Registration": ["./src/features/Registration"],
+      "@Registration/*": ["./src/features/Registration/*"],
+      "@User": ["./src/features/User"],
+      "@User/*": ["./src/features/User/*"],
+      "@Report": ["./src/features/Report"],
+      "@Reportegistration/*": ["./src/features/Report/*"],
 
-    /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    }
   }
 }
