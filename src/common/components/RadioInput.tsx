@@ -16,7 +16,7 @@ export type OptionType = {
 interface Props {
   label: string;
   options: Array<OptionType>;
-  value: string | number; 
+  value: string | number;
   onValueChange: (value: string) => void;
   containerStyle?: StyleProp<ViewStyle>;
 }
@@ -61,11 +61,13 @@ const RadioInput = ({
               onPress={() => {
                 onValueChange(option.value);
               }}>
-              <MaterialCommunityIcons
-                name={option.icon}
-                color={toggleColorStyle}
-                size={ms(22)}
-              />
+              {option.icon && (
+                <MaterialCommunityIcons
+                  name={option.icon}
+                  color={toggleColorStyle}
+                  size={ms(22)}
+                />
+              )}
               <Text style={[styles.radioLabel, {color: toggleColorStyle}]}>
                 {option.label}
               </Text>

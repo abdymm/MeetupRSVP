@@ -1,5 +1,5 @@
-import {StyleSheet, TextInput} from 'react-native';
 import React, {useRef, useState} from 'react';
+import {TextInput} from 'react-native';
 
 import {TextInput as NativeTextInput} from 'react-native-paper';
 import DatePicker from 'react-native-date-picker';
@@ -7,13 +7,20 @@ import {formatDate} from '@Utils/Date';
 
 interface Props {
   label: string;
-  onDatePicked: (value: string) => void;
+  onDatePicked: (date: Date) => void;
 }
 
 const DatepicketInput = ({label, onDatePicked}: Props) => {
   const textInputRef = useRef<TextInput>();
   const [date, setDate] = useState<Date>();
   const [open, setOpen] = useState(false);
+
+  const onSelectDate = (selectedDate: Date) => {
+    textInputRef?.current && textInputRef?.current.blur();
+    setOpen(false);
+    onDatePicked(selectedDate);
+    setDate(selectedDate);
+  };
 
   return (
     <>
@@ -32,12 +39,7 @@ const DatepicketInput = ({label, onDatePicked}: Props) => {
         date={date ?? new Date()}
         mode={'date'}
         maximumDate={new Date()}
-        onConfirm={selectedDate => {
-          setOpen(false);
-          onDatePicked(selectedDate.toISOString());
-          setDate(selectedDate);
-          textInputRef?.current && textInputRef?.current.blur();
-        }}
+        onConfirm={onSelectDate}
         onCancel={() => {
           setOpen(false);
           textInputRef?.current && textInputRef?.current.blur();
@@ -47,4 +49,3 @@ const DatepicketInput = ({label, onDatePicked}: Props) => {
   );
 };
 export default DatepicketInput;
-const styles = StyleSheet.create({});

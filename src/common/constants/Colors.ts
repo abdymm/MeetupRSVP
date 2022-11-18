@@ -7,6 +7,7 @@ const Colors = {
   light: '#fff',
   soft: '#eee',
   dark: '#000',
+  gray: 'gray',
   placeholder: '#e2e2e2',
   pageBackground: '#fff',
   transparent: 'transparent',

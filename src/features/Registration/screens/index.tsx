@@ -57,10 +57,11 @@ const RegistrationScreen = () => {
     return () => backHandler.remove();
   }, [form]);
 
-  const onChange = (key: string, value: string | number) => {
+  const onChange = (key: string, value: string | number | Date) => {
     setForm({...form, [key]: value});
   };
   const onRegister = () => {
+    console.log('register', form);
     showToast('Registered Successfully: ' + form.name);
   };
   return (

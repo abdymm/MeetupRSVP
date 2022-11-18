@@ -1,15 +1,17 @@
 import {Profession} from '@Constants/Enum';
 
+export const professionEmployedIcon = 'account-tie-outline';
+export const professionStudentIcon = 'school-outline';
 export const professionOptions = [
   {
     label: Profession.Employed,
     value: Profession.Employed,
-    icon: 'account-tie-outline',
+    icon: professionEmployedIcon,
   },
   {
     label: Profession.Student,
     value: Profession.Student,
-    icon: 'school-outline',
+    icon: professionStudentIcon,
   },
 ];
 export const numberOfGuestOptions = [
