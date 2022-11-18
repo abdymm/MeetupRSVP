@@ -5,8 +5,10 @@ const Colors = {
   warning: '#F46546',
   success: '#4EB986',
   light: '#fff',
+  soft: '#eee',
   dark: '#000',
-  placeholder: '#B2B2B2',
-  pageBackground: '#001315',
+  placeholder: '#e2e2e2',
+  pageBackground: '#fff',
+  transparent: 'transparent',
 };
 export default Colors;

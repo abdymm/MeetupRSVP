@@ -20,9 +20,18 @@ const AppNavigationContainer = () => {
         <Drawer.Screen
           name={RouteNames.Registration}
           component={RegistrationScreen}
+          options={{headerTitle: RouteNames.Registration.toUpperCase()}}
         />
-        <Drawer.Screen name={RouteNames.User} component={UserScreen} />
-        <Drawer.Screen name={RouteNames.Report} component={ReportScreen} />
+        <Drawer.Screen
+          name={RouteNames.User}
+          component={UserScreen}
+          options={{headerTitle: RouteNames.Registration.toUpperCase()}}
+        />
+        <Drawer.Screen
+          name={RouteNames.Report}
+          component={ReportScreen}
+          options={{headerTitle: RouteNames.Registration.toUpperCase()}}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

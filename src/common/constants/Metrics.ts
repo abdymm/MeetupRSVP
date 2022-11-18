@@ -13,14 +13,24 @@ export const Fonts = {
 };
 
 export const Spacing = {
-  tn: '2@ms',
-  sm: '4@ms',
-  rg: '8@ms',
-  rgLg: '10@ms',
-  lg: '12@ms',
-  xl: '16@ms',
-  xxl: '24@ms',
-  xxxl: '32@ms',
+  v: {
+    tn: '2@mvs',
+    sm: '4@mvs',
+    rg: '8@mvs',
+    lg: '12@mvs',
+    xl: '16@mvs',
+    xxl: '24@mvs',
+    xxxl: '32@mvs',
+  },
+  h: {
+    tn: '2@ms',
+    sm: '4@ms',
+    rg: '8@ms',
+    lg: '12@ms',
+    xl: '16@ms',
+    xxl: '24@ms',
+    xxxl: '32@ms',
+  },
 };
 
 export const Radius = {
