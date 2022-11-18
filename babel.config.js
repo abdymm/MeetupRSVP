@@ -28,6 +28,7 @@ module.exports = {
           '@Hooks': './src/common/hooks',
           '@Utils': './src/common/utils',
           '@Navigations': './src/common/navigations',
+          '@Types': './src/common/types',
 
           // Features
           '@Registration': './src/features/Registration',

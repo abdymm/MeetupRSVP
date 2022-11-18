@@ -5,20 +5,13 @@ import {Button, TextInput} from 'react-native-paper';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import styles from './styles';
+import {showToast} from '@Utils/Notification';
 
-enum Profession {
-  Employed = 'Employed',
-  Student = 'Student',
-}
-
-interface User {
-  name: string;
-  dob: Date | undefined;
-  profession: Profession | undefined;
-  locality: string;
-  numberOfGuest: number;
-  address: string;
-}
+import {User} from 'src/common/types/User';
+import {
+  numberOfGuestOptions,
+  professionOptions,
+} from '@Registration/constants/options';
 
 const INITIAL_FORM = {
   name: '',
@@ -29,33 +22,6 @@ const INITIAL_FORM = {
   address: '',
 };
 
-const professionOptions = [
-  {
-    label: Profession.Employed,
-    value: Profession.Employed,
-    icon: 'account-tie-outline',
-  },
-  {
-    label: Profession.Student,
-    value: Profession.Student,
-    icon: 'school-outline',
-  },
-];
-const numberOfGuestOptions = [
-  {
-    label: 'Alone',
-    value: 0,
-  },
-  {
-    label: '1 Guest',
-    value: 1,
-  },
-  {
-    label: '2 Guests',
-    value: 2,
-  },
-];
-
 const RegistrationScreen = () => {
   const [form, setForm] = useState<User>(INITIAL_FORM);
 
@@ -63,7 +29,7 @@ const RegistrationScreen = () => {
     setForm({...form, [key]: value});
   };
   const onRegister = () => {
-    console.log('form', form);
+    showToast('Registered Successfully: ' + form.name);
   };
   return (
     <ScrollView style={styles.wrapper}>

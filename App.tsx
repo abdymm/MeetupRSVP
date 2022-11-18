@@ -8,6 +8,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors, Fonts} from '@Constants';
 import AppNavigationContainer from '@Navigations';
+import Toast from 'react-native-toast-message';
 
 const theme = {
   ...DefaultTheme,
@@ -34,6 +35,7 @@ const App = () => {
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={'light-content'} />
         <AppNavigationContainer />
+        <Toast />
       </SafeAreaView>
     </PaperProvider>
   );
