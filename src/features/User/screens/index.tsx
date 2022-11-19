@@ -10,6 +10,7 @@ import styles from './styles';
 import {Profession} from '@Constants/Enum';
 import {User} from '@Types/User';
 import UserItem from '@User/components/UserItem';
+import useDebounce from '@Hooks/useDebounce';
 
 const DATA = [
   {
@@ -47,16 +48,22 @@ const UserScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
   const filteredData = useMemo(
     () =>
-      searchQuery !== ''
+      debouncedSearchQuery !== ''
         ? users.filter(
             item =>
-              item.name.toLowerCase().match(searchQuery.toLowerCase()) ||
-              item.locality.toLowerCase().match(searchQuery.toLowerCase()),
+              item.name
+                .toLowerCase()
+                .match(debouncedSearchQuery.toLowerCase()) ||
+              item.locality
+                .toLowerCase()
+                .match(debouncedSearchQuery.toLowerCase()),
           )
         : users,
-    [searchQuery, users],
+    [debouncedSearchQuery, users],
   );
 
   return (
@@ -70,13 +77,7 @@ const UserScreen = () => {
       </View>
       <View style={styles.listContainer}>
         <FlashList
-          data={[
-            ...filteredData,
-            ...filteredData,
-            ...filteredData,
-            ...filteredData,
-            ...filteredData,
-          ]}
+          data={filteredData}
           contentContainerStyle={styles.list as ContentStyle}
           renderItem={({item}) => <UserItem user={item} />}
           estimatedItemSize={100}
