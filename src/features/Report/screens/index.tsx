@@ -1,13 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {Text} from '@Components';
 import styles from './styles';
 import ReportCard from '@Report/components/ReportCard';
-import {
-  professionEmployedIcon,
-  professionStudentIcon,
-} from '@Registration/constants/options';
+import {professionEmployedIcon} from '@Registration/constants/options';
 import {Card} from 'react-native-paper';
+import {REPORT_DATA} from '@Constants/Mocks';
+import {Profession} from '@Constants/Enum';
 
 const ReportScreen = () => {
   return (
@@ -15,46 +14,57 @@ const ReportScreen = () => {
       <View style={styles.section}>
         <Text style={styles.title}>By Age Range</Text>
         <View style={styles.reportSection}>
-          <ReportCard label="Age 13-18" value={123} />
-          <ReportCard label="Age 18-25" value={90} />
-          <ReportCard label="Age 25+" value={4} />
+          {REPORT_DATA.reportByAge.map(report => {
+            return (
+              <ReportCard
+                label={report.label}
+                value={report.value}
+                iconSize={24}
+              />
+            );
+          })}
         </View>
       </View>
       <View style={styles.section}>
         <Text style={styles.title}>Average Guests</Text>
         <View style={styles.reportSection}>
-          <ReportCard label="Average guests" value={45.453} />
+          <ReportCard
+            label="Average guests"
+            value={REPORT_DATA.reportAverageGuests}
+          />
         </View>
       </View>
       <View style={styles.section}>
         <Text style={styles.title}>Employed & Students</Text>
         <View style={styles.reportSection}>
           <ReportCard
-            label="Employed"
-            value={75}
+            label={Profession.Employed}
+            value={REPORT_DATA.reportByProfession[Profession.Employed]}
             icon={professionEmployedIcon}
           />
-          <ReportCard label="Student" value={85} icon={professionStudentIcon} />
+          <ReportCard
+            label={Profession.Student}
+            value={REPORT_DATA.reportByProfession[Profession.Student]}
+            icon={professionEmployedIcon}
+          />
         </View>
       </View>
-      <View style={styles.section}>
-        <Text style={styles.title}>By Localities</Text>
-        <Card style={styles.cardRow}>
-          <Card.Content>
-            <View style={styles.cardRowContent}>
-              <Text style={styles.reportLabel}>Dubai</Text>
-              <Text style={styles.reportValue}>43 guests</Text>
-            </View>
-          </Card.Content>
-        </Card>
-        <Card style={styles.cardRow}>
-          <Card.Content>
-            <View style={styles.cardRowContent}>
-              <Text style={styles.reportLabel}>Jakarta</Text>
-              <Text style={styles.reportValue}>8 guests</Text>
-            </View>
-          </Card.Content>
-        </Card>
+      <View style={[styles.section, styles.sectionLocalities]}>
+        <Text style={[styles.title, styles.titleLocalities]}>By Localities</Text>
+        <FlatList
+          data={REPORT_DATA.reportByLocalities}
+          contentContainerStyle={styles.localitiesList}
+          renderItem={({item}) => (
+            <Card style={styles.cardRow}>
+              <Card.Content>
+                <View style={styles.cardRowContent}>
+                  <Text style={styles.reportLabel}>{item.label}</Text>
+                  <Text style={styles.reportValue}>{item.value} guests</Text>
+                </View>
+              </Card.Content>
+            </Card>
+          )}
+        />
       </View>
     </View>
   );

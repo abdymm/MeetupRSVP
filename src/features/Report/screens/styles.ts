@@ -6,7 +6,7 @@ const styles = ScaledSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.pageBackground,
-    padding: Spacing.h.xl,
+    paddingTop: Spacing.h.xl,
   },
   title: {
     fontSize: Fonts.callout,
@@ -17,6 +17,7 @@ const styles = ScaledSheet.create({
   },
   section: {
     marginBottom: Spacing.v.xl,
+    paddingHorizontal: Spacing.h.xl,
   },
   cardRowContent: {
     flexDirection: 'row',
@@ -26,12 +27,24 @@ const styles = ScaledSheet.create({
   },
   cardRow: {
     marginBottom: Spacing.v.rg,
+    borderLeftColor: Colors.primary,
+    borderLeftWidth: 4,
   },
   reportLabel: {
     fontSize: Fonts.footnote,
   },
   reportValue: {
     fontSize: Fonts.subhead,
+  },
+  sectionLocalities: {
+    flex: 1,
+    paddingHorizontal: 0,
+  },
+  titleLocalities: {
+    paddingHorizontal: Spacing.h.xl,
+  },
+  localitiesList: {
+    paddingHorizontal: Spacing.h.xl,
   },
 });
 

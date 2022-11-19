@@ -7,43 +7,10 @@ import {useNavigation} from '@react-navigation/native';
 import {NavigationProps, RouteNames} from '@Navigations/Routes';
 
 import styles from './styles';
-import {Profession} from '@Constants/Enum';
 import {User} from '@Types/User';
 import UserItem from '@User/components/UserItem';
 import useDebounce from '@Hooks/useDebounce';
-
-export const USER_DATA = [
-  {
-    id: '123qwe',
-    name: 'Abdy Malik Mulky',
-    dob: new Date(),
-    profession: Profession.Employed,
-    locality: 'Jakarta',
-    numberOfGuest: 2,
-    address:
-      'Jl. Prof. Dr. Satrio Blok C-4 Kav. 16-17, KuninganTimur, Jakarta Selatan, 12950.',
-  },
-  {
-    id: '124qwe',
-    name: 'Malik Abdy',
-    dob: new Date(),
-    profession: Profession.Employed,
-    locality: 'Bandung',
-    numberOfGuest: 0,
-    address:
-      'Komp. Cikoneng Sakinah Regency No. 14, Kabupaten Bandung, Jawa Barat 40288',
-  },
-  {
-    id: '125qwe',
-    name: 'Mulky Abdy',
-    dob: new Date(),
-    profession: Profession.Student,
-    locality: 'Dubai',
-    numberOfGuest: 1,
-    address:
-      'Springdales School Dubai Al Quoz 4, Near Jumeirah University P.O. Box 115930. Dubai, United Arab Emirates.',
-  },
-];
+import {USER_DATA} from '@Constants/Mocks';
 
 const UserScreen = () => {
   const navigation = useNavigation<NavigationProps>();

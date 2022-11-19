@@ -12,9 +12,10 @@ interface Props {
   value: number;
   label: string;
   icon?: string;
+  iconSize?: number;
 }
 
-const ReportCard = ({value, label, icon}: Props) => {
+const ReportCard = ({value, label, icon, iconSize}: Props) => {
   return (
     <Card style={styles.card}>
       <Card.Content>
@@ -24,9 +25,9 @@ const ReportCard = ({value, label, icon}: Props) => {
             <Text style={styles.reportLabel}>{label}</Text>
           </View>
           <MaterialCommunityIcons
-            name={icon || 'account'}
+            name={icon || 'account-multiple'}
             color={Colors.primary}
-            size={ms(32)}
+            size={ms(iconSize || 32)}
           />
         </View>
       </Card.Content>
@@ -37,7 +38,9 @@ export default ReportCard;
 const styles = ScaledSheet.create({
   card: {
     flex: 1,
-    marginHorizontal: Spacing.h.tn,
+    marginHorizontal: Spacing.h.sm,
+    borderBottomColor: Colors.primary,
+    borderBottomWidth: 4,
   },
   cardContent: {
     flexDirection: 'row',
