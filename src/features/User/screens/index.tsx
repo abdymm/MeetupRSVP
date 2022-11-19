@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {View} from 'react-native';
 
-import {FlashList} from '@shopify/flash-list';
+import {ContentStyle, FlashList} from '@shopify/flash-list';
 import {Searchbar} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '@Navigations/Routes';
@@ -61,16 +61,25 @@ const UserScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Searchbar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
+      <View style={styles.searchContainer}>
+        <Searchbar
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+        />
+      </View>
       <View style={styles.listContainer}>
         <FlashList
-          data={filteredData}
+          data={[
+            ...filteredData,
+            ...filteredData,
+            ...filteredData,
+            ...filteredData,
+            ...filteredData,
+          ]}
+          contentContainerStyle={styles.list as ContentStyle}
           renderItem={({item}) => <UserItem user={item} />}
-          estimatedItemSize={200}
+          estimatedItemSize={100}
         />
       </View>
     </View>

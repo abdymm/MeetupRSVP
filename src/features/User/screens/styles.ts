@@ -6,10 +6,16 @@ const styles = ScaledSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.pageBackground,
-    padding: Spacing.h.xl,
+  },
+  searchContainer: {
+    paddingHorizontal: Spacing.h.xl,
+    marginTop: Spacing.h.xl,
   },
   listContainer: {
     flex: 1,
+  },
+  list: {
+    padding: Spacing.h.xl,
   },
 });
 
