@@ -11,6 +11,7 @@ import {USER_DATA} from '..';
 import {Card} from 'react-native-paper';
 import UserProfessionIcon from '@User/components/UserProfessionIcon';
 import {Colors} from '@Constants';
+import UserDetailSection from '@User/components/UserDetailSection';
 
 const UserDetailScreen = () => {
   const {id} = useRoute<RouteProps<RouteNames.UserDetail>>().params;
@@ -28,27 +29,17 @@ const UserDetailScreen = () => {
           <Text style={styles.name}>{user?.name}</Text>
         </Card.Content>
       </Card>
-      <Card style={styles.section}>
-        <Card.Content>
-          <Text style={styles.label}>Locality</Text>
-          <Text style={styles.value}>
-            {user?.locality}
-            {user?.dob ? `, ${formatDate(user?.dob)}` : '-'}
-          </Text>
-        </Card.Content>
-      </Card>
-      <Card style={styles.section}>
-        <Card.Content>
-          <Text style={styles.label}>Full Address</Text>
-          <Text style={styles.value}>{user?.address}</Text>
-        </Card.Content>
-      </Card>
-      <Card style={styles.section}>
-        <Card.Content>
-          <Text style={styles.label}>Additional guests</Text>
-          <Text style={styles.value}>{`+${user?.numberOfGuest} guests`}</Text>
-        </Card.Content>
-      </Card>
+      <UserDetailSection
+        label="Locality"
+        value={`${user?.locality}${
+          user?.dob ? `, ${formatDate(user?.dob)}` : ''
+        }`}
+      />
+      <UserDetailSection label="Full Address" value={user?.address} />
+      <UserDetailSection
+        label="Additional guests"
+        value={`+${user?.numberOfGuest} guests`}
+      />
     </View>
   );
 };
