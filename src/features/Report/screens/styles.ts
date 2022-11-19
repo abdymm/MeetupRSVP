@@ -20,6 +20,10 @@ const styles = ScaledSheet.create({
     paddingHorizontal: Spacing.h.xl,
   },
   cardRowContent: {
+    borderLeftColor: Colors.primary,
+    borderLeftWidth: 4,
+  },
+  cardRowView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -27,8 +31,6 @@ const styles = ScaledSheet.create({
   },
   cardRow: {
     marginBottom: Spacing.v.rg,
-    borderLeftColor: Colors.primary,
-    borderLeftWidth: 4,
   },
   reportLabel: {
     fontSize: Fonts.footnote,

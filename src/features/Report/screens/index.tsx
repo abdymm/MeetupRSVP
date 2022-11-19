@@ -67,8 +67,8 @@ const ReportScreen = () => {
           contentContainerStyle={styles.localitiesList}
           renderItem={({item}) => (
             <Card style={styles.cardRow} key={item.label}>
-              <Card.Content>
-                <View style={styles.cardRowContent}>
+              <Card.Content style={styles.cardRowContent}>
+                <View style={styles.cardRowView}>
                   <Text style={styles.reportLabel}>{item.label}</Text>
                   <Text style={styles.reportValue}>{item.value} guests</Text>
                 </View>

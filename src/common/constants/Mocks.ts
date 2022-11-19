@@ -73,7 +73,7 @@ export const REPORT_DATA = {
 
 const legendStyle = {
   legendFontColor: Colors.gray,
-  legendFontSize: Fonts.footnote,
+  legendFontSize: 13,
 };
 export const REPORT_DATA_VIA_CHART = {
   reportByAges: [
