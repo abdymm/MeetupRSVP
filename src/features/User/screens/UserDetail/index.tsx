@@ -7,11 +7,11 @@ import {RouteNames, RouteProps} from '@Navigations/Routes';
 import styles from './styles';
 import {Text} from '@Components';
 import {formatDate} from '@Utils/Date';
-import {USER_DATA} from '..';
 import {Card} from 'react-native-paper';
 import UserProfessionIcon from '@User/components/UserProfessionIcon';
 import {Colors} from '@Constants';
 import UserDetailSection from '@User/components/UserDetailSection';
+import {USER_DATA} from '@Constants/Mocks';
 
 const UserDetailScreen = () => {
   const {id} = useRoute<RouteProps<RouteNames.UserDetail>>().params;

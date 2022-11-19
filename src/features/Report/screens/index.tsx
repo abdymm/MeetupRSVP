@@ -1,22 +1,27 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, ScrollView, View} from 'react-native';
 import {Text} from '@Components';
 import styles from './styles';
 import ReportCard from '@Report/components/ReportCard';
 import {professionEmployedIcon} from '@Registration/constants/options';
 import {Card} from 'react-native-paper';
-import {REPORT_DATA} from '@Constants/Mocks';
+import {REPORT_DATA, REPORT_DATA_VIA_CHART} from '@Constants/Mocks';
 import {Profession} from '@Constants/Enum';
+import ReportPieChart from '@Report/components/ReportPieChart';
 
 const ReportScreen = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.section}>
         <Text style={styles.title}>By Age Range</Text>
+
+        <ReportPieChart data={REPORT_DATA_VIA_CHART.reportByAges} />
+
         <View style={styles.reportSection}>
           {REPORT_DATA.reportByAge.map(report => {
             return (
               <ReportCard
+                key={report.label}
                 label={report.label}
                 value={report.value}
                 iconSize={24}
@@ -36,6 +41,9 @@ const ReportScreen = () => {
       </View>
       <View style={styles.section}>
         <Text style={styles.title}>Employed & Students</Text>
+
+        <ReportPieChart data={REPORT_DATA_VIA_CHART.reportByProfession} />
+
         <View style={styles.reportSection}>
           <ReportCard
             label={Profession.Employed}
@@ -50,12 +58,15 @@ const ReportScreen = () => {
         </View>
       </View>
       <View style={[styles.section, styles.sectionLocalities]}>
-        <Text style={[styles.title, styles.titleLocalities]}>By Localities</Text>
+        <Text style={[styles.title, styles.titleLocalities]}>
+          By Localities
+        </Text>
         <FlatList
           data={REPORT_DATA.reportByLocalities}
+          scrollEnabled={false}
           contentContainerStyle={styles.localitiesList}
           renderItem={({item}) => (
-            <Card style={styles.cardRow}>
+            <Card style={styles.cardRow} key={item.label}>
               <Card.Content>
                 <View style={styles.cardRowContent}>
                   <Text style={styles.reportLabel}>{item.label}</Text>
@@ -66,7 +77,7 @@ const ReportScreen = () => {
           )}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

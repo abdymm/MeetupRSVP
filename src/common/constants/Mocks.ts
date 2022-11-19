@@ -1,4 +1,6 @@
+import Colors from './Colors';
 import {Profession} from './Enum';
+import {Fonts} from './Metrics';
 
 export const USER_DATA = [
   {
@@ -66,41 +68,46 @@ export const REPORT_DATA = {
       label: 'Bandung',
       value: 35,
     },
+  ],
+};
+
+const legendStyle = {
+  legendFontColor: Colors.gray,
+  legendFontSize: Fonts.footnote,
+};
+export const REPORT_DATA_VIA_CHART = {
+  reportByAges: [
     {
-      label: 'Dubai',
-      value: 23,
+      name: 'Age 13-18',
+      population: 12,
+      color: Colors.tertiary,
+      ...legendStyle,
     },
     {
-      label: 'Jakarta',
-      value: 19,
+      name: 'Age 18-25',
+      population: 43,
+      color: Colors.primary,
+      ...legendStyle,
     },
     {
-      label: 'Bandung',
-      value: 35,
+      name: 'Age 25+',
+      population: 22,
+      color: Colors.success,
+      ...legendStyle,
+    },
+  ],
+  reportByProfession: [
+    {
+      name: Profession.Employed,
+      population: 56,
+      color: Colors.primary,
+      ...legendStyle,
     },
     {
-      label: 'Dubai',
-      value: 23,
-    },
-    {
-      label: 'Jakarta',
-      value: 19,
-    },
-    {
-      label: 'Bandung',
-      value: 35,
-    },
-    {
-      label: 'Dubai',
-      value: 23,
-    },
-    {
-      label: 'Jakarta',
-      value: 19,
-    },
-    {
-      label: 'Bandung',
-      value: 35,
+      name: Profession.Student,
+      population: 21,
+      color: Colors.tertiary,
+      ...legendStyle,
     },
   ],
 };
