@@ -9,14 +9,14 @@ const styles = ScaledSheet.create({
     paddingTop: Spacing.h.xl,
   },
   title: {
-    fontSize: Fonts.callout,
-    marginBottom: Spacing.v.rg,
+    fontSize: Fonts.body,
+    marginBottom: Spacing.v.lg,
   },
   reportSection: {
     flexDirection: 'row',
   },
   section: {
-    marginBottom: Spacing.v.xl,
+    marginBottom: Spacing.v.xxxl,
     paddingHorizontal: Spacing.h.xl,
   },
   cardRowContent: {

@@ -61,21 +61,20 @@ const ReportScreen = () => {
         <Text style={[styles.title, styles.titleLocalities]}>
           By Localities
         </Text>
-        <FlatList
-          data={REPORT_DATA.reportByLocalities}
-          scrollEnabled={false}
-          contentContainerStyle={styles.localitiesList}
-          renderItem={({item}) => (
-            <Card style={styles.cardRow} key={item.label}>
-              <Card.Content style={styles.cardRowContent}>
-                <View style={styles.cardRowView}>
-                  <Text style={styles.reportLabel}>{item.label}</Text>
-                  <Text style={styles.reportValue}>{item.value} guests</Text>
-                </View>
-              </Card.Content>
-            </Card>
-          )}
-        />
+        <View style={styles.localitiesList}>
+          {REPORT_DATA.reportByLocalities.map(item => {
+            return (
+              <Card style={styles.cardRow} key={item.label}>
+                <Card.Content style={styles.cardRowContent}>
+                  <View style={styles.cardRowView}>
+                    <Text style={styles.reportLabel}>{item.label}</Text>
+                    <Text style={styles.reportValue}>{item.value} guests</Text>
+                  </View>
+                </Card.Content>
+              </Card>
+            );
+          })}
+        </View>
       </View>
     </ScrollView>
   );
