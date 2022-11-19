@@ -4,25 +4,25 @@ import React from 'react';
 import {User} from '@Types/User';
 import {Text} from '@Components';
 import {Card} from 'react-native-paper';
-import {Fonts, Spacing} from '@Constants/Metrics';
-import {ms, ScaledSheet} from 'react-native-size-matters';
+import {Fonts, Radius, Spacing} from '@Constants/Metrics';
+import {ScaledSheet} from 'react-native-size-matters';
 import {Colors} from '@Constants';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  professionEmployedIcon,
-  professionStudentIcon,
-} from '@Registration/constants/options';
-import {Profession} from '@Constants/Enum';
+import UserProfessionIcon from './UserProfessionIcon';
 
 interface Props {
   user: User;
+  onPress: (id: string) => void;
 }
 
-const UserItem = ({user}: Props) => {
+const UserItem = ({user, onPress}: Props) => {
   return (
     <View style={styles.container}>
-      <Card style={styles.card}>
-        <Card.Content>
+      <Card
+        onPress={() => {
+          onPress(user.id);
+        }}
+        style={styles.card}>
+        <Card.Content style={styles.cardContent}>
           <View style={styles.content}>
             <View style={styles.labelContainer}>
               <Text style={styles.title}>{user.name}</Text>
@@ -32,18 +32,7 @@ const UserItem = ({user}: Props) => {
               </Text>
             </View>
 
-            <View style={styles.iconContainer}>
-              <MaterialCommunityIcons
-                name={
-                  user.profession === Profession.Employed
-                    ? professionEmployedIcon
-                    : professionStudentIcon
-                }
-                color={Colors.gray}
-                size={ms(32)}
-              />
-              <Text style={styles.profession}>{user.profession}</Text>
-            </View>
+            <UserProfessionIcon profession={user.profession} />
           </View>
         </Card.Content>
       </Card>
@@ -56,8 +45,14 @@ const styles = ScaledSheet.create({
     marginVertical: Spacing.v.rg,
   },
   card: {
+    borderTopLeftRadius: Radius.sm,
+    borderBottomLeftRadius: Radius.sm,
+  },
+  cardContent: {
     borderLeftWidth: 6,
     borderLeftColor: Colors.primary,
+    borderTopLeftRadius: Radius.sm,
+    borderBottomLeftRadius: Radius.sm,
   },
   title: {
     fontSize: Fonts.body,

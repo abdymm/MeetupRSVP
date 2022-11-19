@@ -5,13 +5,16 @@ import {
 } from '@react-navigation/native';
 
 export enum RouteNames {
+  Root = 'Root',
   Registration = 'Registration',
   User = 'User',
+  UserDetail = 'UserDetail',
   Report = 'Report',
 }
 export interface Routes extends ParamListBase {
   [RouteNames.Registration]: undefined;
   [RouteNames.User]: undefined;
+  [RouteNames.UserDetail]: {id: string};
   [RouteNames.Report]: undefined;
 }
 

@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import {ContentStyle, FlashList} from '@shopify/flash-list';
 import {Searchbar} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '@Navigations/Routes';
+import {NavigationProps, RouteNames} from '@Navigations/Routes';
 
 import styles from './styles';
 import {Profession} from '@Constants/Enum';
@@ -12,9 +12,10 @@ import {User} from '@Types/User';
 import UserItem from '@User/components/UserItem';
 import useDebounce from '@Hooks/useDebounce';
 
-const DATA = [
+export const USER_DATA = [
   {
-    name: 'Abdy Malik',
+    id: '123qwe',
+    name: 'Abdy Malik Mulky',
     dob: new Date(),
     profession: Profession.Employed,
     locality: 'Jakarta',
@@ -23,6 +24,7 @@ const DATA = [
       'Jl. Prof. Dr. Satrio Blok C-4 Kav. 16-17, KuninganTimur, Jakarta Selatan, 12950.',
   },
   {
+    id: '124qwe',
     name: 'Malik Abdy',
     dob: new Date(),
     profession: Profession.Employed,
@@ -32,6 +34,7 @@ const DATA = [
       'Komp. Cikoneng Sakinah Regency No. 14, Kabupaten Bandung, Jawa Barat 40288',
   },
   {
+    id: '125qwe',
     name: 'Mulky Abdy',
     dob: new Date(),
     profession: Profession.Student,
@@ -44,7 +47,7 @@ const DATA = [
 
 const UserScreen = () => {
   const navigation = useNavigation<NavigationProps>();
-  const [users, setUsers] = useState<User[]>(DATA);
+  const [users, setUsers] = useState<User[]>(USER_DATA);
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
@@ -66,6 +69,10 @@ const UserScreen = () => {
     [debouncedSearchQuery, users],
   );
 
+  const onShowDetail = (id: string) => {
+    navigation.navigate(RouteNames.UserDetail, {id});
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
@@ -79,7 +86,9 @@ const UserScreen = () => {
         <FlashList
           data={filteredData}
           contentContainerStyle={styles.list as ContentStyle}
-          renderItem={({item}) => <UserItem user={item} />}
+          renderItem={({item}) => (
+            <UserItem user={item} onPress={onShowDetail} />
+          )}
           estimatedItemSize={100}
         />
       </View>
