@@ -25,6 +25,7 @@ const DatepicketInput = ({label, onDatePicked}: Props) => {
   return (
     <>
       <NativeTextInput
+        testID="date-picker-input"
         ref={textInputRef}
         label={label}
         mode={'outlined'}

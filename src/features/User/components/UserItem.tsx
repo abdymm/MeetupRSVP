@@ -16,10 +16,12 @@ interface Props {
 
 const UserItem = ({user, onPress}: Props) => {
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      accessibilityLabel={`${user.id}-user-container`}>
       <Card
         onPress={() => {
-          onPress(user.id);
+          user?.id && onPress(user.id);
         }}
         style={styles.card}>
         <Card.Content style={styles.cardContent}>
