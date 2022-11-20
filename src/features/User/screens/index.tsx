@@ -19,7 +19,6 @@ type Props = StateProps & DispatchProps;
 
 const UserScreen = ({userState, fetch}: Props) => {
   const {data: users, loading, error} = userState;
-  console.log('userState', userState);
 
   const navigation = useNavigation<NavigationProps>();
 

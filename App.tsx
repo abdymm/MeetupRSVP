@@ -26,11 +26,7 @@ const theme = {
 
 const App = () => {
   useEffect(() => {
-    try {
-      MaterialCommunityIcons.loadFont();
-    } catch (error) {
-      console.log('error', error);
-    }
+    MaterialCommunityIcons.loadFont();
   }, []);
 
   return (

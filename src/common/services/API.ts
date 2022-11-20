@@ -17,7 +17,7 @@ export class API {
 
   constructor() {
     this.apiRequest.interceptors.request.use(async config => {
-      // this interceptor we can use it for user token, refreshing token, 
+      // this interceptor we can use it for user token, refreshing token,
       // logging (maybe on resopnse), etc
       const timeout = 30000;
       config = {
