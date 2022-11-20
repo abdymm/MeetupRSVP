@@ -1,11 +1,11 @@
 import {DatepicketInput, RadioInput} from '@Components';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Alert, BackHandler, ScrollView, View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import styles from './styles';
-import {showToast} from '@Utils/Notification';
+import {showToast, ToastType} from '@Utils/Notification';
 
 import {User} from 'src/common/types/User';
 import {
@@ -57,12 +57,23 @@ const RegistrationScreen = () => {
     return () => backHandler.remove();
   }, [form]);
 
+  const isInputValid = useMemo(() => {
+    const formValues = Object.values(form);
+    return !!formValues.every(value => value !== '' && value !== undefined);
+  }, [form]);
+
   const onChange = (key: string, value: string | number | Date) => {
     setForm({...form, [key]: value});
   };
   const onRegister = () => {
-    console.log('register', form);
-    showToast('Registered Successfully: ' + form.name);
+    if (isInputValid) {
+      showToast('Registered Successfully: ' + form.name);
+    } else {
+      showToast(
+        'Plesae fill up all fieldsa before you register',
+        ToastType.Error,
+      );
+    }
   };
   return (
     <ScrollView style={styles.wrapper}>

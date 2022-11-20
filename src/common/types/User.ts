@@ -1,7 +1,7 @@
 import {Profession} from '@Constants/Enum';
 
 export interface User {
-  id: string;
+  id?: string;
   name: string;
   dob: Date | undefined;
   profession: Profession | undefined;
