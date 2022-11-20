@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ScrollView, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {Text} from '@Components';
 import styles from './styles';
 import ReportCard from '@Report/components/ReportCard';

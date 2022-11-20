@@ -1,12 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
 import {PieChart} from 'react-native-chart-kit';
 import Layout from '@Constants/Layout';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import {AbstractChartConfig} from 'react-native-chart-kit/dist/AbstractChart';
 import {PieChartProps} from 'react-native-chart-kit/dist/PieChart';
-import {Colors} from '@Constants';
-import {Radius, Spacing} from '@Constants/Metrics';
+import {Spacing} from '@Constants/Metrics';
 import {Card} from 'react-native-paper';
 
 interface Props

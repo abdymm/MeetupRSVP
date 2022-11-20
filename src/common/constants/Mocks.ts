@@ -1,6 +1,5 @@
 import Colors from './Colors';
 import {Profession} from './Enum';
-import {Fonts} from './Metrics';
 
 export const USER_DATA = [
   {
@@ -133,7 +132,7 @@ export const REPORT_DATA = {
 
 const legendStyle = {
   legendFontColor: Colors.gray,
-  legendFontSize: Fonts.footnote,
+  legendFontSize: '13@mvs0.3',
 };
 export const REPORT_DATA_VIA_CHART = {
   reportByAges: [
