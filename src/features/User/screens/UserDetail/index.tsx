@@ -38,7 +38,9 @@ const UserDetailScreen = () => {
       <UserDetailSection label="Full Address" value={user?.address} />
       <UserDetailSection
         label="Additional guests"
-        value={`+${user?.numberOfGuest} guests`}
+        value={`${
+          user?.numberOfGuest === 0 ? 'Without' : `+${user?.numberOfGuest}`
+        } guests`}
       />
     </View>
   );
