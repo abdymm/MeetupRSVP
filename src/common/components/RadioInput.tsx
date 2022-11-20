@@ -17,7 +17,7 @@ interface Props {
   label: string;
   options: Array<OptionType>;
   value: string | number;
-  onValueChange: (value: string) => void;
+  onValueChange: (value: string | number) => void;
   containerStyle?: StyleProp<ViewStyle>;
 }
 

@@ -7,6 +7,7 @@
     "ios": "npx react-native run-ios --simulator=\"iPhone 14 Pro\"",
     "start": "react-native start",
     "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install"
   },
