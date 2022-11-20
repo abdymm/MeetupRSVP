@@ -1,5 +1,5 @@
 {
-  "name": "MeetupRSVP",
+  "name": "meetup",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,8 @@
     "ios": "npx react-native run-ios --simulator=\"iPhone 14 Pro\"",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@react-navigation/drawer": "^6.5.0",
@@ -52,6 +53,7 @@
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.32.0",
+    "husky": "^8.0.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "0.72.3",
     "react-test-renderer": "18.1.0",
