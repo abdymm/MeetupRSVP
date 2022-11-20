@@ -10,11 +10,9 @@ participants can bring up to two guests along with them.
 - Guest list and it searchable
 - Report
 
-More detail: https://abdymm.notion.site/Invygo-Test-8bdfdaf497294671b08f7571575ea4d6
-
 ## Demo
 
-
+Demo can be found here [Video Demo](https://drive.google.com/file/d/1EeiZbLuiobzpk1l3jyZRrRpUGDb_e97n/view?usp=sharing)
 
 
 ## Getting Started
@@ -25,6 +23,12 @@ More detail: https://abdymm.notion.site/Invygo-Test-8bdfdaf497294671b08f7571575e
 2. Install `$ yarn install` and `pod install`
 3. Run iOS app with `$ yarn ios`
 4. Run Android app with `$ yarn android`
+
+
+### Testing
+
+run `$ yarn test` and `$ yarn test:watch`
+
 
 ### Stack
 
