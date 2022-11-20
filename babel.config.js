@@ -29,6 +29,7 @@ module.exports = {
           '@Utils': './src/common/utils',
           '@Navigations': './src/common/navigations',
           '@Types': './src/common/types',
+          '@Stores': './src/common/stores',
 
           // Features
           '@Registration': './src/features/Registration',

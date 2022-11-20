@@ -20,6 +20,8 @@
       "@Navigations/*": ["./src/common/navigations/*"],
       "@Types": ["./src/common/types"],
       "@Types/*": ["./src/common/types/*"],
+      "@Stores": ["./src/common/stores"],
+      "@Stores/*": ["./src/common/stores/*"],
 
       // Features
       "@Registration": ["./src/features/Registration"],

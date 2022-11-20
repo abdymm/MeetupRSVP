@@ -1,5 +1,7 @@
-import {DatepicketInput, RadioInput} from '@Components';
 import React, {useEffect, useMemo, useState} from 'react';
+import {connect} from 'react-redux';
+
+import {DatepicketInput, RadioInput} from '@Components';
 import {Alert, BackHandler, ScrollView, View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -12,6 +14,11 @@ import {
   numberOfGuestOptions,
   professionOptions,
 } from '@Registration/constants/options';
+import {Dispatch, RootState} from '@Stores';
+
+type StateProps = ReturnType<typeof mapState>;
+type DispatchProps = ReturnType<typeof mapDispatch>;
+type Props = StateProps & DispatchProps;
 
 const INITIAL_FORM = {
   name: '',
@@ -22,7 +29,9 @@ const INITIAL_FORM = {
   address: '',
 };
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({registration, register}: Props) => {
+  const {data, loading, error} = registration;
+
   const [form, setForm] = useState<User>(INITIAL_FORM);
 
   useEffect(() => {
@@ -67,14 +76,22 @@ const RegistrationScreen = () => {
   };
   const onRegister = () => {
     if (isInputValid) {
-      showToast('Registered Successfully: ' + form.name);
+      register(form);
     } else {
       showToast(
-        'Plesae fill up all fieldsa before you register',
+        'Please fill up all fieldsa before you register',
         ToastType.Error,
       );
     }
   };
+
+  useEffect(() => {
+    if (!error && data) {
+      setForm(INITIAL_FORM);
+      showToast(data.message);
+    }
+  }, [data, error]);
+
   return (
     <ScrollView style={styles.wrapper}>
       <KeyboardAwareScrollView>
@@ -126,7 +143,11 @@ const RegistrationScreen = () => {
           />
 
           <View style={styles.buttonContainer}>
-            <Button mode="contained" onPress={onRegister}>
+            <Button
+              mode="contained"
+              onPress={onRegister}
+              loading={loading}
+              disabled={loading}>
               Register
             </Button>
           </View>
@@ -136,4 +157,10 @@ const RegistrationScreen = () => {
   );
 };
 
-export default RegistrationScreen;
+const mapState = (state: RootState) => ({
+  registration: state.registration,
+});
+const mapDispatch = (dispatch: Dispatch) => ({
+  register: (user: User) => dispatch.registration.register(user),
+});
+export default connect(mapState, mapDispatch)(RegistrationScreen);

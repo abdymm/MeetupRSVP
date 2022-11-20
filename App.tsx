@@ -6,9 +6,12 @@ import {
   Provider as PaperProvider,
 } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Toast from 'react-native-toast-message';
 import {Colors, Fonts} from '@Constants';
 import AppNavigationContainer from '@Navigations';
-import Toast from 'react-native-toast-message';
+
+import {Provider as StoreProvider} from 'react-redux';
+import {store} from '@Stores';
 
 const theme = {
   ...DefaultTheme,
@@ -31,13 +34,15 @@ const App = () => {
   }, []);
 
   return (
-    <PaperProvider theme={theme}>
-      <SafeAreaView style={styles.container}>
-        <StatusBar barStyle={'light-content'} />
-        <AppNavigationContainer />
-        <Toast />
-      </SafeAreaView>
-    </PaperProvider>
+    <StoreProvider store={store}>
+      <PaperProvider theme={theme}>
+        <SafeAreaView style={styles.container}>
+          <StatusBar barStyle={'light-content'} />
+          <AppNavigationContainer />
+          <Toast />
+        </SafeAreaView>
+      </PaperProvider>
+    </StoreProvider>
   );
 };
 
