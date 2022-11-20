@@ -1,16 +1,16 @@
 import {ENDPOINT_USERS} from '@Constants/API';
-// import API from '@Services/API';
+import {APIResponse} from '@Types/APIResponse';
+import {User} from '@Types/User';
 import {API} from './API';
+
+export interface UserResponse extends APIResponse {
+  users: User[];
+}
 
 class UserService {
   api = new API();
   async getAll() {
-    try {
-      const res = await this.api.apiRequest.get(ENDPOINT_USERS);
-      return res;
-    } catch (error) {
-      return error;
-    }
+    return await this.api.apiRequest.get<UserResponse>(ENDPOINT_USERS);
   }
 }
 

@@ -1,5 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {connect} from 'react-redux';
+import {Dispatch, RootState} from '@Stores';
+import {User} from 'src/common/types/User';
 
 import {DatepicketInput, RadioInput} from '@Components';
 import {Alert, BackHandler, ScrollView, View} from 'react-native';
@@ -9,12 +11,10 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import {showToast, ToastType} from '@Utils/Notification';
 
-import {User} from 'src/common/types/User';
 import {
   numberOfGuestOptions,
   professionOptions,
 } from '@Registration/constants/options';
-import {Dispatch, RootState} from '@Stores';
 
 type StateProps = ReturnType<typeof mapState>;
 type DispatchProps = ReturnType<typeof mapDispatch>;

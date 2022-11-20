@@ -1,38 +1,59 @@
-import React, {useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState, useEffect} from 'react';
 import {View} from 'react-native';
+import {connect} from 'react-redux';
+import {Dispatch, RootState} from '@Stores';
 
 import {ContentStyle, FlashList} from '@shopify/flash-list';
-import {Searchbar} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
+import {ActivityIndicator, Searchbar} from 'react-native-paper';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {NavigationProps, RouteNames} from '@Navigations/Routes';
 
 import styles from './styles';
-import {User} from '@Types/User';
 import UserItem from '@User/components/UserItem';
 import useDebounce from '@Hooks/useDebounce';
-import {USER_DATA} from '@Constants/Mocks';
+import {showToast, ToastType} from '@Utils/Notification';
 
-const UserScreen = () => {
+type StateProps = ReturnType<typeof mapState>;
+type DispatchProps = ReturnType<typeof mapDispatch>;
+type Props = StateProps & DispatchProps;
+
+const UserScreen = ({userState, fetch}: Props) => {
+  const {data: users, loading, error} = userState;
+  console.log('userState', userState);
+
   const navigation = useNavigation<NavigationProps>();
-  const [users, setUsers] = useState<User[]>(USER_DATA);
+
   const [searchQuery, setSearchQuery] = useState('');
+
+  useFocusEffect(
+    useCallback(() => {
+      fetch();
+    }, [fetch]),
+  );
+
+  useEffect(() => {
+    if (error) {
+      showToast(error, ToastType.Error);
+    }
+  }, [error]);
+
   const onChangeSearch = (query: string) => setSearchQuery(query);
-
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
-
   const filteredData = useMemo(
     () =>
-      debouncedSearchQuery !== ''
-        ? users.filter(
-            item =>
-              item.name
-                .toLowerCase()
-                .match(debouncedSearchQuery.toLowerCase()) ||
-              item.locality
-                .toLowerCase()
-                .match(debouncedSearchQuery.toLowerCase()),
-          )
-        : users,
+      users
+        ? debouncedSearchQuery !== ''
+          ? users.filter(
+              item =>
+                item.name
+                  .toLowerCase()
+                  .match(debouncedSearchQuery.toLowerCase()) ||
+                item.locality
+                  .toLowerCase()
+                  .match(debouncedSearchQuery.toLowerCase()),
+            )
+          : users
+        : [],
     [debouncedSearchQuery, users],
   );
 
@@ -50,17 +71,29 @@ const UserScreen = () => {
         />
       </View>
       <View style={styles.listContainer}>
-        <FlashList
-          data={filteredData}
-          contentContainerStyle={styles.list as ContentStyle}
-          renderItem={({item}) => (
-            <UserItem user={item} onPress={onShowDetail} />
-          )}
-          estimatedItemSize={100}
-        />
+        {loading ? (
+          <View style={styles.loading}>
+            <ActivityIndicator />
+          </View>
+        ) : (
+          <FlashList
+            data={filteredData}
+            contentContainerStyle={styles.list as ContentStyle}
+            renderItem={({item}) => (
+              <UserItem user={item} onPress={onShowDetail} />
+            )}
+            estimatedItemSize={100}
+          />
+        )}
       </View>
     </View>
   );
 };
 
-export default UserScreen;
+const mapState = (state: RootState) => ({
+  userState: state.user,
+});
+const mapDispatch = (dispatch: Dispatch) => ({
+  fetch: () => dispatch.user.fetch(),
+});
+export default connect(mapState, mapDispatch)(UserScreen);

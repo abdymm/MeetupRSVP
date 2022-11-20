@@ -17,6 +17,10 @@ const styles = ScaledSheet.create({
   list: {
     padding: Spacing.h.xl,
   },
+  loading: {
+    flex: 1,
+    padding: Spacing.v.xl,
+  },
 });
 
 export default styles;
